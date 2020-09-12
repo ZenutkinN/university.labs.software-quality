@@ -1,0 +1,22 @@
+{
+  "name": "lab-unit-testing",
+  "version": "1.0.0",
+  "description": "Lab 2",
+  "main": "matrixLib.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "jsdoc-to-markdown": "^5.0.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "testWatch": "jest --watchAll",
+    "testCoverage": "jest --coverage",
+    "dock": "./node_modules/.bin/jsdoc Matrix.js"
+  },
+  "author": "Nikolai Zenyutkin <nvzenutkin@gmail.com>",
+  "license": "ISC"
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pizza</title>
+		<link rel="stylesheet" href="./css/main.css" />
+	</head>
+	<body>
+		<div id="main">
+			<div class="form-wrapper">
+				<div class="title">
+					<h2>Order pizza</h2>
+					<img src="./../img/logo.png" alt="logo" class="logo" />
+				</div>
+
+				<form>
+					<div class="row-wrapper">
+						<input type="text" id="address" name="address" />
+						<label for="addres">Addres</label>
+					</div>
+					<div class="row-wrapper">
+						<input type="date" id="date" name="date" />
+						<label for="date">Date</label>
+					</div>
+					<div class="row-wrapper">
+						<input type="time" id="time" name="time" />
+						<label for="time">Time</label>
+					</div>
+					<div class="row-wrapper">
+						<select name="pizzaName" id="pizza-name">
+							<option value="margarita">margarita</option>
+							<option value="peperoni">peperoni</option>
+							<option value="carbonara">carbonara</option>
+						</select>
+						<label for="pizza-name">pizza name</label>
+					</div>
+					<div class="row-wrapper">
+						<select name="pizzaSize" id="pizza-size">
+							<option value="small">small</option>
+							<option value="medium">medium</option>
+							<option value="large">large</option>
+						</select>
+						<label for="pizza-size">Pizza size</label>
+					</div>
+					<div class="row-wrapper">
+						<select name="drinks" id="drinks">
+							<option value="none" selected>none</option>
+							<option value="tea">tea</option>
+							<option value="cola">colla</option>
+							<option value="pepsi">pepsi</option>
+						</select>
+						<label for="drinks">drinks</label>
+					</div>
+					<div class="row-wrapper">
+						<select name="sauces" id="sauces">
+							<option value="none" selected>none</option>
+							<option value="cheese">cheese</option>
+							<option value="tomato">tomato</option>
+							<option value="garlick">garlic</option>
+						</select>
+						<label for="sauces">Sauces</label>
+					</div>
+					<div class="row-wrapper submit-wrapper">
+						<input type="submit" value="Submit" id="submit" />
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="order" class="hidden">
+			<div id="order-wrapper">
+				<h2>Your order</h2>
+				<div id="order-address"></div>
+				<div id="order-date"></div>
+				<div id="order-time"></div>
+				<div id="order-pizzaName"></div>
+				<div id="order-pizzaSize"></div>
+				<div id="order-drinks"></div>
+				<div id="order-sauces"></div>
+			</div>
+		</div>
+		<script>
+			const form = document.querySelector('form');
+
+			form.addEventListener('submit', function (event) {
+				event.preventDefault();
+				const formData = new FormData(this);
+
+				fetch('http://localhost:3000/order', {
+					method: 'POST',
+					body: formData,
+				})
+					.then((body) => body.json())
+					.then((data) => addData(data));
+			});
+
+			function addData(data) {
+				console.log(data);
+
+				Object.keys(data).forEach((key) => {
+					document.querySelector(`#order-${key}`).innerHTML = data[key];
+				});
+
+				document.querySelector('#order').classList.toggle('hidden');
+				// const orderDate = document.querySelector('#order-date');
+				// const orderTime = document.querySelector('#order-time');
+				// const orderPizzaName = document.querySelector('#order-pizza-name');
+				// const orderPizzaSize = document.querySelector('#order-pizza-size');
+				// const orderDrinks = document.querySelector('#order-drinks');
+				// const orderSauces = document.querySelector('#order-sauces');
+			}
+		</script>
+	</body>
+</html>

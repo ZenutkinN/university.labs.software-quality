@@ -1,0 +1,25 @@
+{
+	"name": "005-functional-testing",
+	"version": "1.0.0",
+	"description": "Laboratory work on the subject \"Software Quality\"",
+	"main": "index.js",
+	"scripts": {
+		"start": "node ./src/server",
+		"test": "testcafe chrome"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ZenutkinN/006-functional-testing.git"
+	},
+	"author": "Zenyutkin Nikolay [nvzenutkin@gmail.com]",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ZenutkinN/006-functional-testing/issues"
+	},
+	"homepage": "https://github.com/ZenutkinN/006-functional-testing#readme",
+	"dependencies": {
+		"@hapi/hapi": "^19.1.1",
+		"@hapi/inert": "^6.0.1",
+		"testcafe": "^1.8.4"
+	}
+}
